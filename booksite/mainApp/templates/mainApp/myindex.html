@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Lab3</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'css/mainApp/main.css' %}" type="text/css">
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+	<header>
+		<div>
+		</div>
+		<footer>
+			<p></p>
+			<p></p>
+			<div class = "two-buttons show">
+				<a href="#" id="register" class="button">Авторизация</a>
+				<a href="#" id="login" class="button">Регистрация</a>
+			</div>
+		</footer>
+	</header>
+
+	<div class="div-grid">
+		
+	</div>
+
+	<footer></footer>
+		<div id="form-wrapper">
+			<div id="Autorization" class="block-init">
+				<div><h1>Авторизация</h1></div>
+				<div class="block-init-inside">
+					<div>
+						<p><b>Логин:</b></p>
+						<p><b>Пароль:</b></p>
+					</div>
+					<div>
+						<input type="text" size="30">
+						<input type="text" size="30">
+					</div>
+				</div>
+				<a href="#" class="button8">Войти</a>
+			</div>
+  		</div>
+</body>
+
+<script>
+    $(document).ready(function(){
+        $("#register").click(function(){
+		    $("#form-wrapper").show();
+		});
+
+		// hide
+
+        $("#login").click(function(){
+		    $("#form-wrapper").hide();
+		});
+    });
+ </script>
+
+</html>
