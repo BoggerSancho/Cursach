@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'booksite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'ka66_05',
+        'HOST': 'zanner.org.ua',
+        'PORT': '33321',
+        'PASSWORD': '021198',
+        'NAME': 'ka66_05',
     }
 }
 
