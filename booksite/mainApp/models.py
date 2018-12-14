@@ -6,6 +6,8 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class Books(models.Model):
@@ -31,8 +33,8 @@ class Books(models.Model):
 
 class Journal(models.Model):
     id = models.IntegerField(primary_key=True)
-    username = models.ForeignKey('Transletors', models.DO_NOTHING, db_column='Username')  # Field name made lowercase.
-    bookname = models.ForeignKey(Books, models.DO_NOTHING, db_column='BookName')  # Field name made lowercase.
+    username = models.ForeignKey('Reader', on_delete=models.CASCADE, db_column='Username')  # Field name made lowercase.
+    bookname = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='BookName')  # Field name made lowercase.
     page = models.IntegerField()
 
     class Meta:
@@ -56,6 +58,10 @@ class Reader(models.Model):
     def __str__(self):
         return self.username
 
+    # @receiver(pre_save, sender='Transletors')
+    # def add(instance, **kwargs):
+    #     instance.save()
+
 class Transletors(models.Model):
     username = models.CharField(db_column='Username', unique=True, max_length=255)  # Field name made lowercase.
     email = models.CharField(unique=True, max_length=255)
@@ -70,4 +76,6 @@ class Transletors(models.Model):
 
     def __str__(self):
         return self.username
+
+
 

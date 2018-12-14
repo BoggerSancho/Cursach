@@ -1,7 +1,21 @@
 from django.shortcuts import render
+from .models import Books
+from django.views.generic import ListView, DetailView, TemplateView
 
 def index(request):
-    return render(request, 'mainApp/homePage.html')
+    all_book = Books.objects.all()
+    return render(request, 'mainApp/myindex.html', all_book)
 
-def contact(request):
-    return render(request, 'mainApp/basic.html', {'values': ['Есть вопросы?', '097-340-32-43']})
+def register(request):
+    return render(request, 'mainApp/register.html')
+
+class List(TemplateView):
+    template_name = 'mainApp/myindex.html'
+    def get(self, request):
+        all_book = Books.objects.all()
+
+        ctx = {
+            'all_book': all_book,
+        }
+
+        return render(request, self.template_name, ctx)

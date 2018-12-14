@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Lab3</title>
@@ -17,33 +17,44 @@
 		<div>
 		</div>
 		<footer>
-			<p></p>
+			<img src="https://78.media.tumblr.com/e1dbdcb4b67d6d9af043effe6f0813d6/tumblr_oshzs0n5511qjb1qgo1_1280.png" alt="" width="100px" height="100px">
 			<p></p>
 			<div class = "two-buttons show">
-				<a href="#" id="register" class="button">Авторизация</a>
-				<a href="#" id="login" class="button">Регистрация</a>
+				<a href="#" id="login" class="button">Авторизация</a>
+				<a href="/register" id="register" class="button">Регистрация</a>
 			</div>
 		</footer>
 	</header>
 
 	<div class="div-grid">
-		
+		<div class="book_block">
+			<div>
+			<img src="https://ozon-st.cdn.ngenix.net/multimedia/1001591177.jpg" alt="">
+			<a href="" class="link_a">Гегель Феноменология Духа</a>
+			</div>
+		</div>
+		{% for book in all_book %}
+		<div class="book_block">
+			<div>
+			<img src="{{book.image}}" alt="">
+			<a href="" class="link_a">{{book.bookname}}</a>
+			</div>
+		</div>
+		{% endfor %}
 	</div>
+	
+	
 
 	<footer></footer>
 		<div id="form-wrapper">
 			<div id="Autorization" class="block-init">
-				<div><h1>Авторизация</h1></div>
-				<div class="block-init-inside">
+				<div><h1>Авторизация</h1> <a href="#" id="exit" class="button_exit">X</a> </div>
+
 					<div>
-						<p><b>Логин:</b></p>
-						<p><b>Пароль:</b></p>
+						<input type="text" size="30" placeholder="Логин">
+						<input type="text" size="30" placeholder="Пароль">
 					</div>
-					<div>
-						<input type="text" size="30">
-						<input type="text" size="30">
-					</div>
-				</div>
+				
 				<a href="#" class="button8">Войти</a>
 			</div>
   		</div>
@@ -51,13 +62,13 @@
 
 <script>
     $(document).ready(function(){
-        $("#register").click(function(){
+        $("#login").click(function(){
 		    $("#form-wrapper").show();
 		});
 
 		// hide
 
-        $("#login").click(function(){
+        $("#exit").click(function(){
 		    $("#form-wrapper").hide();
 		});
     });
