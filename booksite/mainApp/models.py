@@ -6,8 +6,9 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User
 
 
 class Books(models.Model):
@@ -58,9 +59,7 @@ class Reader(models.Model):
     def __str__(self):
         return self.username
 
-    # @receiver(pre_save, sender='Transletors')
-    # def add(instance, **kwargs):
-    #     instance.save()
+
 
 class Transletors(models.Model):
     username = models.CharField(db_column='Username', unique=True, max_length=255)  # Field name made lowercase.
@@ -78,4 +77,32 @@ class Transletors(models.Model):
         return self.username
 
 
+def transaction_post_save_receiver(sender, instance, created, *args, **kwargs):
+#     instance.reader.username = instance.username
+#     instance.reader.email = instance.email
+#     instance.reader.password = instance.password
+#     instance.reader.first_name = instance.first_name
+#     instance.reader.second_name = instance.second_name
+#     instance.reader.username.save()
+#     instance.reader.email.save()
+#     instance.reader.password.save()
+#     instance.reader.first_name.save()
+#     instance.reader.second_name.save()
+    if created:
+        username = instance.username
+        email = instance.email
+        password = instance.password
+        first_name = instance.first_name
+        second_name = instance.second_name
+        reader = Reader(username = username,email = email, password = password,first_name = first_name,second_name = second_name)
+        reader.save()
 
+post_save.connect(transaction_post_save_receiver, sender=Transletors)
+
+
+def add_new_user_post_save_reader(sender, instance, created, *args, **kwargs):
+    if created:
+        user = User(username = instance.username, email = instance.email, password = instance.password,
+                    first_name = instance.first_name, last_name = instance.second_name)
+        user.save()
+post_save.connect(add_new_user_post_save_reader, sender=Reader)

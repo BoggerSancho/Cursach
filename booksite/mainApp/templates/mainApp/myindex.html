@@ -19,14 +19,20 @@
 		<footer>
 			<img src="https://78.media.tumblr.com/e1dbdcb4b67d6d9af043effe6f0813d6/tumblr_oshzs0n5511qjb1qgo1_1280.png" alt="" width="100px" height="100px">
 			<p></p>
+			{% if user.is_authenticated %}
+			<p> Привет {{ user.get_username }}</p>
+			{% else %}
 			<div class = "two-buttons show">
 				<a href="#" id="login" class="button">Авторизация</a>
 				<a href="/register" id="register" class="button">Регистрация</a>
 			</div>
+			{% endif %}
+
 		</footer>
 	</header>
 
 	<div class="div-grid">
+
 		<div class="book_block">
 			<div>
 			<img src="https://ozon-st.cdn.ngenix.net/multimedia/1001591177.jpg" alt="">
