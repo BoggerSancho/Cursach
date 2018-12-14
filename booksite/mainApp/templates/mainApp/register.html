@@ -27,15 +27,23 @@
 		</footer>
 	</header>
 
-	<div class="register_form">
-		<h1>Регистрация</h1>
-		<input type="text" class="reg_input" size="30" placeholder="Логин">
-		<input type="text" class="reg_input" size="30" placeholder="Пароль">
-		<input type="text" class="reg_input" size="30" placeholder="Почта">
-		<input type="text" class="reg_input" size="30" placeholder="Имя (необязательно)">
-		<input type="text" class="reg_input" size="30" placeholder="Фамилия (необязательно)">
-		<a href="#" id='reg_button' class="button8">Регистрация</a>
-	</div>
 
+
+			<form action="register/" method="post" class="register_form">
+				{% csrf_token %}
+				<h1>Регистрация</h1>
+				<input type="text" name="login" id="login" class="reg_input" size="30" placeholder="Логин" required>
+				<input type="password" name="password" id="password" class="reg_input" size="30" placeholder="Пароль" required>
+				<input type="email" name="email" id="email" class="reg_input" size="30" placeholder="Почта" required>
+				<input type="text" name="first_name" id="first_name" class="reg_input" size="30" placeholder="Имя (необязательно)">
+				<input type="text" name="last_name" id="last_name" class="reg_input" size="30" placeholder="Фамилия (необязательно)">
+				<input class="button8" type="submit" value="Войти">
+				{% if login_error %}
+				<label>{{login_error}}</label>
+				{% endif %}
+			</form>
+
+
+</body>
 	<footer></footer>
 </html>
