@@ -31,7 +31,7 @@ def register(request):
             return redirect('/')
         except:
             ctx['login_error'] = 'error'
-            return render(request, 'mainApp/register.html', ctx)
+            return redirect('/register',request, ctx)
 
     return render(request, 'mainApp/register.html', ctx)
 
@@ -67,6 +67,7 @@ def get(request):
 
     return render(request, template_name, ctx)
 
+
 def login(request):
     template_name = 'mainApp/login.html'
     args = {}
@@ -81,13 +82,14 @@ def login(request):
                 return redirect('/')
             else:
                 args['login_error'] = "Invalid user"
-                return render(request, template_name, args)
+                return render('/',request, template_name, args)
         else:
             args['login_error'] = "Invalid"
-            return render(request, template_name, args)
+            return render('/', request, template_name, args)
     else:
         return render(request, template_name, args)
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
