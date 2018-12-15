@@ -28,12 +28,11 @@ header{
   "footer";
   grid-template-rows: 1.7fr 3fr; 
 }
-header div{
+.up{
   grid-area: div;
   background: #303745;
-
 }
-header footer{
+.down{
   grid-area: footer;
   background: #252B37;
   display:flex;
@@ -43,9 +42,9 @@ header footer{
 .div-grid {
   grid-area: divr;
   background: white;
-  /*display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;*/
+}
+
+#div-grid-book{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
@@ -274,4 +273,17 @@ footer{
 }
 #book_site_id p{
     margin-left: 25%;
+}
+
+.footer-info{
+
+}
+
+.footer-info p{
+    color: white;
+    font-size: 120%;
+}
+
+.div-grid iframe{
+margin-left: 10%;
 }
